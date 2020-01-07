@@ -15,9 +15,6 @@ namespace Walldash.EntityFramework.DataContext
 		public DbSet<Widget> Widgets { get; set; }
 		public DbSet<GraphWidget> GraphWidgets { get; set; }
 		public DbSet<Metric> Metrics { get; set; }
-		//public DbSet<MetricTag> MetricTags { get; set; }
-		//public DbSet<WidgetTag> WidgetTags { get; set; }
-		//public DbSet<Tag> Tags { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
@@ -68,6 +65,14 @@ namespace Walldash.EntityFramework.DataContext
 				.HasValue<Widget>("widget_base")
 				.HasValue<GraphWidget>("widget_graph");
 
+			modelBuilder.Entity<Widget>()
+				.Property(p => p.BackgroundColor)
+				.IsRequired();
+
+			modelBuilder.Entity<Widget>()
+				.Property(p => p.TextColor)
+				.IsRequired();
+
 
 
 			// Metrics
@@ -78,11 +83,6 @@ namespace Walldash.EntityFramework.DataContext
 			modelBuilder.Entity<Metric>()
 				.Property(p => p.Timestamp)
 				.HasDefaultValueSql("SYSDATETIMEOFFSET()");
-
-
-			//// Tag
-			//modelBuilder.Entity<Tag>()
-			//	.HasKey(p => p.Alias);
 
 		}
 	}

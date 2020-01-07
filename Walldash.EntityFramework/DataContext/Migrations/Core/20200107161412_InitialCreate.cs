@@ -23,20 +23,6 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                 });
 
             migrationBuilder.CreateTable(
-                name: "StyleSettings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BackgroundColor = table.Column<string>(nullable: true),
-                    TextColor = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StyleSettings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Dashboards",
                 columns: table => new
                 {
@@ -90,7 +76,11 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                     Type = table.Column<string>(nullable: true),
                     Width = table.Column<int>(nullable: false),
                     Height = table.Column<int>(nullable: false),
-                    StyleSettingsId = table.Column<int>(nullable: true)
+                    widget_type = table.Column<string>(nullable: false),
+                    GraphType = table.Column<string>(nullable: true),
+                    GraphColor = table.Column<string>(nullable: true),
+                    GraphValueX = table.Column<string>(nullable: true),
+                    GraphValueY = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,12 +91,27 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                         principalTable: "Dashboards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StyleSettings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WidgetId = table.Column<int>(nullable: false),
+                    BackgroundColor = table.Column<string>(nullable: true),
+                    TextColor = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StyleSettings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Widgets_StyleSettings_StyleSettingsId",
-                        column: x => x.StyleSettingsId,
-                        principalTable: "StyleSettings",
+                        name: "FK_StyleSettings_Widgets_WidgetId",
+                        column: x => x.WidgetId,
+                        principalTable: "Widgets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -120,14 +125,15 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StyleSettings_WidgetId",
+                table: "StyleSettings",
+                column: "WidgetId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Widgets_DashboardId",
                 table: "Widgets",
                 column: "DashboardId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Widgets_StyleSettingsId",
-                table: "Widgets",
-                column: "StyleSettingsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -136,13 +142,13 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                 name: "Metrics");
 
             migrationBuilder.DropTable(
+                name: "StyleSettings");
+
+            migrationBuilder.DropTable(
                 name: "Widgets");
 
             migrationBuilder.DropTable(
                 name: "Dashboards");
-
-            migrationBuilder.DropTable(
-                name: "StyleSettings");
 
             migrationBuilder.DropTable(
                 name: "Accounts");

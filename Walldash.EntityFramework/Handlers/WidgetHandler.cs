@@ -89,7 +89,6 @@ namespace Walldash.EntityFramework.Handlers
 						current.Type = widget.Type;
 						current.Width = widget.Width;
 						current.Height = widget.Height;
-						current.StyleSettings = widget.StyleSettings;
 
 						if(widget is GraphWidget)
 						{

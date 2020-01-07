@@ -10,8 +10,8 @@ using Walldash.EntityFramework.DataContext;
 namespace Walldash.EntityFramework.DataContext.Migrations.Core
 {
     [DbContext(typeof(CoreContext))]
-    [Migration("20200107123801_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200107162728_RemovedStyleSettings")]
+    partial class RemovedStyleSettings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,24 +91,6 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                     b.ToTable("Metrics");
                 });
 
-            modelBuilder.Entity("Walldash.Domain.Model.StyleSettings", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BackgroundColor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TextColor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StyleSettings");
-                });
-
             modelBuilder.Entity("Walldash.Domain.Model.Widget", b =>
                 {
                     b.Property<int>("Id")
@@ -117,6 +99,10 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Alias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BackgroundColor")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DashboardId")
@@ -128,8 +114,9 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                     b.Property<string>("MetricAlias")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StyleSettingsId")
-                        .HasColumnType("int");
+                    b.Property<string>("TextColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -137,13 +124,36 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                     b.Property<int>("Width")
                         .HasColumnType("int");
 
+                    b.Property<string>("widget_type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DashboardId");
 
-                    b.HasIndex("StyleSettingsId");
-
                     b.ToTable("Widgets");
+
+                    b.HasDiscriminator<string>("widget_type").HasValue("widget_base");
+                });
+
+            modelBuilder.Entity("Walldash.Domain.Model.GraphWidget", b =>
+                {
+                    b.HasBaseType("Walldash.Domain.Model.Widget");
+
+                    b.Property<string>("GraphColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphValueX")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GraphValueY")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("widget_graph");
                 });
 
             modelBuilder.Entity("Walldash.Domain.Model.Dashboard", b =>
@@ -171,10 +181,6 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
                         .HasForeignKey("DashboardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Walldash.Domain.Model.StyleSettings", "StyleSettings")
-                        .WithMany()
-                        .HasForeignKey("StyleSettingsId");
                 });
 #pragma warning restore 612, 618
         }

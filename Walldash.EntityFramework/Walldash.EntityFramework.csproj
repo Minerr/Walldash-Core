@@ -13,6 +13,10 @@
     <Compile Remove="DataContext\Migrations\Core\20200106162609_AccountToken.Designer.cs" />
     <Compile Remove="DataContext\Migrations\Core\20200107122601_AccountId.cs" />
     <Compile Remove="DataContext\Migrations\Core\20200107122601_AccountId.Designer.cs" />
+    <Compile Remove="DataContext\Migrations\Core\20200107160842_WidgetStyleSettings.cs" />
+    <Compile Remove="DataContext\Migrations\Core\20200107160842_WidgetStyleSettings.Designer.cs" />
+    <Compile Remove="DataContext\Migrations\Core\20200107161133_WidgetStyleSettings.cs" />
+    <Compile Remove="DataContext\Migrations\Core\20200107161133_WidgetStyleSettings.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
