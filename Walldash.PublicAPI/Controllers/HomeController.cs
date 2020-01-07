@@ -14,6 +14,7 @@ namespace Walldash.PublicAPI.Controllers
 		/// <summary>
 		/// Redirect to the swagger API docs
 		/// </summary>
+		[HttpGet("/")]
 		[HttpGet("/api")]
 		[HttpGet("/api/docs")]
 		public ActionResult Get()

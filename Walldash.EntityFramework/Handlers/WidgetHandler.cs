@@ -11,19 +11,6 @@ namespace Walldash.EntityFramework.Handlers
 {
 	public class WidgetHandler
 	{
-		/*
-		public static List<Tag> GetTagsByMetricAlias(int accountId, string alias)
-		{
-			using(var context = new CoreContext())
-			{
-				return (from mt in context.MetricTags
-						where mt.Metric.AccountId == accountId
-							&& mt.Metric.Alias == alias
-						select mt.Tag).ToList();
-			}
-		}
-		*/
-
 		public static List<Widget> GetAllByDashboardId(int accountId, int dashboardId)
 		{
 			using(var context = new CoreContext())
@@ -89,6 +76,8 @@ namespace Walldash.EntityFramework.Handlers
 						current.Type = widget.Type;
 						current.Width = widget.Width;
 						current.Height = widget.Height;
+						current.BackgroundColor = widget.BackgroundColor;
+						current.TextColor = widget.TextColor;
 
 						if(widget is GraphWidget)
 						{

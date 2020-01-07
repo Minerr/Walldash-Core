@@ -54,6 +54,26 @@ namespace Walldash.EntityFramework.DataContext
 				.WithOne()
 				.HasForeignKey(p => p.DashboardId);
 
+			modelBuilder.Entity<Dashboard>()
+				.Property(p => p.Columns)
+				.IsRequired()
+				.HasDefaultValue(6);
+
+			modelBuilder.Entity<Dashboard>()
+				.Property(p => p.Rows)
+				.IsRequired()
+				.HasDefaultValue(3);
+
+			modelBuilder.Entity<Dashboard>()
+				.Property(p => p.BackgroundColor)
+				.IsRequired()
+				.HasDefaultValue("#e7ecf2");
+
+			modelBuilder.Entity<Dashboard>()
+				.Property(p => p.NavbarColor)
+				.IsRequired()
+				.HasDefaultValue("#0f1723");
+
 
 			// Widgets
 			modelBuilder.Entity<Widget>()
@@ -67,12 +87,20 @@ namespace Walldash.EntityFramework.DataContext
 
 			modelBuilder.Entity<Widget>()
 				.Property(p => p.BackgroundColor)
-				.IsRequired();
+				.IsRequired()
+				.HasDefaultValue("#fff");
 
 			modelBuilder.Entity<Widget>()
 				.Property(p => p.TextColor)
-				.IsRequired();
+				.IsRequired()
+				.HasDefaultValue("#000");
 
+			modelBuilder.Entity<Widget>()
+				.Property(p => p.TagFilter)
+				.HasConversion(
+					w => string.Join(',', w),
+					w => w.Split(",", StringSplitOptions.RemoveEmptyEntries)
+				);
 
 
 			// Metrics
@@ -84,6 +112,8 @@ namespace Walldash.EntityFramework.DataContext
 				.Property(p => p.Timestamp)
 				.HasDefaultValueSql("SYSDATETIMEOFFSET()");
 
+			modelBuilder.Entity<Metric>()
+				.Property(p => p.Tag);
 		}
 	}
 }

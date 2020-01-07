@@ -11,15 +11,15 @@ namespace Walldash.EntityFramework.Handlers
 {
 	public class MetricHandler
 	{
-		/*
-		public static List<Tag> GetTagsByMetricAlias(int accountId, string alias)
+
+		public static List<string> GetTagsByMetricAlias(int accountId, string alias)
 		{
 			using(var context = new CoreContext())
 			{
-				return (from mt in context.MetricTags
-						where mt.Metric.AccountId == accountId
-							&& mt.Metric.Alias == alias
-						select mt.Tag).ToList();
+				return (from m in context.Metrics
+						where m.AccountId == accountId
+							&& m.Alias == alias
+						select m.Tag).ToList();
 			}
 		}
 
@@ -27,18 +27,12 @@ namespace Walldash.EntityFramework.Handlers
 		{
 			using(var context = new CoreContext())
 			{
-				return (from mt in context.MetricTags
-						where mt.Metric.AccountId == accountId 
-							&& mt.Metric.Alias == alias 
-							&& tags.Contains(mt.Tag.Alias)
-						select mt.Metric)
+				return (from m in context.Metrics
+						where m.AccountId == accountId 
+							&& m.Alias == alias
+							&& tags.Contains(m.Tag)
+						select m)
 						.OrderByDescending(m => m.Timestamp).ToList();
-
-				//return (from m in context.Metrics
-				//		join mt in context.MetricTags on m.Id equals mt.Metric.Id
-				//		where m.Account.Id == accountId && m.Alias == alias && tags.Contains(mt.Tag.Alias)
-				//		select m)
-				//		.OrderByDescending(m => m.Timestamp).ToList();
 			}
 		}
 
@@ -46,17 +40,11 @@ namespace Walldash.EntityFramework.Handlers
 		{
 			using(var context = new CoreContext())
 			{
-				return (from mt in context.MetricTags
-						where mt.Metric.AccountId == accountId
-							&& tags.Contains(mt.Tag.Alias)
-						select mt.Metric)
+				return (from m in context.Metrics
+						where m.AccountId == accountId
+							&& tags.Contains(m.Tag)
+						select m)
 						.OrderByDescending(m => m.Timestamp).ToList();
-
-				//return (from m in context.Metrics
-				//		join mt in context.MetricTags on m.Id equals mt.Metric.Id
-				//		where m.Account.Id == accountId && tags.Contains(mt.Tag.Alias)
-				//		select m)
-				//		.OrderByDescending(m => m.Timestamp).ToList();
 			}
 		}
 
@@ -64,21 +52,20 @@ namespace Walldash.EntityFramework.Handlers
 		{
 			using(var context = new CoreContext())
 			{
-				return (from mt in context.MetricTags
-						where mt.Metric.AccountId == accountId
-							&& mt.Metric.Alias == alias
-							&& tags.Contains(mt.Tag.Alias)
-						select mt.Metric)
+				return (from m in context.Metrics
+						where m.AccountId == accountId
+							&& m.Alias == alias
+							&& tags.Contains(m.Tag)
+						select m)
 						.OrderByDescending(m => m.Timestamp).FirstOrDefault();
 			}
 		}
-		*/
 
 		public static Metric GetLatest(int accountId, string alias)
 		{
 			using(var context = new CoreContext())
 			{
-				return context.Metrics.Where(m => m.AccountId == accountId).OrderByDescending(m => m.Timestamp).FirstOrDefault();
+				return context.Metrics.Where(m => m.Alias == alias && m.AccountId == accountId).OrderByDescending(m => m.Timestamp).FirstOrDefault();
 			}
 		}
 

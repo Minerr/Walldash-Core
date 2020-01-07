@@ -11,6 +11,6 @@ namespace Walldash.Domain.Model
 		public string Alias { get; set; }
 		public double Number { get; set; }
 		public DateTimeOffset Timestamp { get; set; }
-		//public List<Tag> Tags { get; set; }
+		public string Tag { get; set; }
 	}
 }

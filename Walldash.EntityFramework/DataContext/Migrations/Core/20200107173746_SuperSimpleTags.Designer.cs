@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Walldash.EntityFramework.DataContext;
 
 namespace Walldash.EntityFramework.DataContext.Migrations.Core
 {
     [DbContext(typeof(CoreContext))]
-    partial class CoreContextModelSnapshot : ModelSnapshot
+    [Migration("20200107173746_SuperSimpleTags")]
+    partial class SuperSimpleTags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,28 +55,6 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
 
                     b.Property<string>("Alias")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BackgroundColor")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("#e7ecf2");
-
-                    b.Property<int>("Columns")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(6);
-
-                    b.Property<string>("NavbarColor")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("#0f1723");
-
-                    b.Property<int>("Rows")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(3);
 
                     b.HasKey("Id");
 
@@ -126,9 +106,7 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
 
                     b.Property<string>("BackgroundColor")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("#fff");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DashboardId")
                         .HasColumnType("int");
@@ -144,9 +122,7 @@ namespace Walldash.EntityFramework.DataContext.Migrations.Core
 
                     b.Property<string>("TextColor")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("#000");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");

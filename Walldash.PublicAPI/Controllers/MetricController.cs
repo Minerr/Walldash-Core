@@ -51,35 +51,36 @@ namespace Walldash.PublicAPI.Controllers
 			return NotFound();
 		}
 
-		///// <summary>
-		///// Get a specific metric
-		///// </summary>
-		//[HttpGet("GetByFilter")]
-		//public ActionResult<Metric> GetByFilter(string alias = null, List<string> tags = null)
-		//{
-		//	int accountId;
-		//	if(AccountController.TryGetAccountId(Request, out accountId))
-		//	{
-		//		bool filterByAlias = !string.IsNullOrWhiteSpace(alias);
-		//		bool filterByTags = tags != null;
+		/// <summary>
+		/// Get a specific metric
+		/// </summary>
+		[HttpGet("GetByFilter")]
+		public ActionResult<Metric> GetByFilter(string alias = null, HashSet<string> tags = null)
+		{
+			int accountId;
+			if(AccountController.TryGetAccountId(Request, out accountId))
+			{
+				bool filterByAlias = !string.IsNullOrWhiteSpace(alias);
+				bool filterByTags = tags != null;
 
-		//		if(filterByAlias && filterByTags)
-		//		{
-		//			//return Ok(MetricHandler.GetAllByAliasAndTags(accountId, alias, tags));
-		//		}
-		//		else if(filterByAlias)
-		//		{
-		//			return Ok(MetricHandler.GetAllByAlias(accountId, alias));
-		//		}
-		//		else if(filterByTags)
-		//		{
-		//			//return Ok(MetricHandler.GetAllByTags(accountId, tags));
-		//		}
-		//		return NotFound();
-		//	}
+				if(filterByAlias && filterByTags)
+				{
+					return Ok(MetricHandler.GetAllByAliasAndTags(accountId, alias, tags));
+				}
+				else if(filterByAlias)
+				{
+					return Ok(MetricHandler.GetAllByAlias(accountId, alias));
+				}
+				else if(filterByTags)
+				{
+					return Ok(MetricHandler.GetAllByTags(accountId, tags));
+				}
 
-		//	return Unauthorized();
-		//}
+				return NotFound();
+			}
+
+			return Unauthorized();
+		}
 
 		/// <summary>
 		/// Get all metric aliases
@@ -96,26 +97,25 @@ namespace Walldash.PublicAPI.Controllers
 			return NotFound();
 		}
 
-		///// <summary>
-		///// Get the most recent metric by its timestamp
-		///// </summary>
-		//[HttpGet("GetLatest/{alias}")]
-		//public ActionResult<Metric> GetLatest(string alias, List<string> tags = null)
-		//{
-		//	int accountId;
-		//	if(AccountController.TryGetAccountId(Request, out accountId))
-		//	{
-		//		if(tags != null)
-		//		{
-		//			return NotFound();
-		//			//return Ok(MetricHandler.GetLatestByTags(accountId, alias, tags));
-		//		}
+		/// <summary>
+		/// Get the most recent metric by its timestamp
+		/// </summary>
+		[HttpGet("GetLatest/{alias}")]
+		public ActionResult<Metric> GetLatest(string alias, HashSet<string> tags = null)
+		{
+			int accountId;
+			if(AccountController.TryGetAccountId(Request, out accountId))
+			{
+				if(tags != null)
+				{
+					return Ok(MetricHandler.GetLatestByTags(accountId, alias, tags));
+				}
 
-		//		return Ok(MetricHandler.GetLatest(accountId, alias));
-		//	}
+				return Ok(MetricHandler.GetLatest(accountId, alias));
+			}
 
-		//	return Unauthorized();
-		//}
+			return Unauthorized();
+		}
 
 		/// <summary>
 		/// Save a metric to the database

@@ -15,7 +15,7 @@ namespace Walldash.Domain.Model
 		public int Height { get; set; }
 		public string BackgroundColor { get; set; }
 		public string TextColor { get; set; }
-		//public List<Tag> TagFilter { get; set; }
+		public string[] TagFilter { get; set; }
 	}
 
 	public class GraphWidget : Widget

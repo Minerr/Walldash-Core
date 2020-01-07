@@ -73,7 +73,6 @@
     <Compile Include="Model\Dashboard.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Metric.cs" />
-    <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Widget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
