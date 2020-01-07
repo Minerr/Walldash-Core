@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\Script00001 - Main tabless.sql" />
+    <None Remove="Scripts\Script00002 - Metric SP.sql" />
+    <None Remove="Scripts\Script00004 - Dashboard SP.sql" />
+    <None Remove="Scripts\Script00005 - Widget SP.sql" />
+    <None Remove="Scripts\Script00006 - Account SP.sql" />
+    <None Remove="Scripts\Script00010 - MetricTags SP.sql" />
+    <None Remove="Scripts\Script00011 - Widget Settings.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Script00001 - Main tabless.sql" />
+    <EmbeddedResource Include="Scripts\Script00011 - Widget Settings.sql" />
+    <EmbeddedResource Include="Scripts\Script00006 - Account SP.sql" />
+    <EmbeddedResource Include="Scripts\Script00005 - Widget SP.sql" />
+    <EmbeddedResource Include="Scripts\Script00004 - Dashboard SP.sql" />
+    <EmbeddedResource Include="Scripts\Script00010 - MetricTags SP.sql" />
+    <EmbeddedResource Include="Scripts\Script00002 - Metric SP.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-core" Version="4.3.1" />
+    <PackageReference Include="dbup-sqlserver" Version="4.3.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
