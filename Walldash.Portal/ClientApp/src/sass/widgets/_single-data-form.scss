@@ -1,0 +1,11 @@
+.single-data-form {
+  display: grid;
+  grid-template-columns: 100px 150px;
+  gap: 8px;
+  label {
+    grid-column: 1;
+  }
+  input {
+    grid-column: 2;
+  }
+}

@@ -1,0 +1,13 @@
+.graph {
+  height: 100%;
+  position: relative;
+
+  .title {
+    position: absolute;
+    // text-align: center;
+    font-size: 2rem;
+    width: 100%;
+    top: 32px;
+    margin-left: 42px;
+  }
+}

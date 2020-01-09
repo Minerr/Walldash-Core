@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Walldash.DbUp", "Walldash.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Walldash.SystemMonitor", "Walldash.SystemMonitor\Walldash.SystemMonitor.csproj", "{4F20674C-060B-48CC-8009-3B67F8F2E69E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Walldash.EntityFramework", "Walldash.EntityFramework\Walldash.EntityFramework.csproj", "{106587F8-BE69-4370-B749-44D31B24567A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Walldash.EntityFramework", "Walldash.EntityFramework\Walldash.EntityFramework.csproj", "{106587F8-BE69-4370-B749-44D31B24567A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Walldash.Portal", "Walldash.Portal\Walldash.Portal.csproj", "{8C2D532A-8F8D-4138-A9B3-1C8A468DC576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{106587F8-BE69-4370-B749-44D31B24567A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{106587F8-BE69-4370-B749-44D31B24567A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{106587F8-BE69-4370-B749-44D31B24567A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2D532A-8F8D-4138-A9B3-1C8A468DC576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C2D532A-8F8D-4138-A9B3-1C8A468DC576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C2D532A-8F8D-4138-A9B3-1C8A468DC576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2D532A-8F8D-4138-A9B3-1C8A468DC576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

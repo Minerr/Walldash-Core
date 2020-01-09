@@ -1,0 +1,12 @@
+.button-edit {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  display: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,209 @@
+.widget-form {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  overflow: hidden;
+  color: $c-text-main;
+
+  label {
+    font-size: 1.1rem;
+    padding: 8px 0;
+  }
+
+  input,
+  select {
+    background-color: $c-input;
+    color: inherit;
+    box-sizing: border-box;
+    border: 1px solid $c-border;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  input {
+    padding: 8px;
+  }
+
+  select {
+    padding: 7px 6px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid $c-border;
+    margin-bottom: 8px;
+  }
+
+  .tag-selector {
+    .selected-tags,
+    .available-tags {
+      user-select: none;
+      height: 90px;
+      overflow: auto;
+      margin: 16px 0;
+      background-color: $c-input;
+      border: 1px solid $c-border;
+    }
+    .tag {
+      display: inline-block;
+      background-color: $c-input-dark;
+      padding: 8px;
+      border: 1px solid $c-border;
+      margin: 4px;
+      border-radius: 4px;
+    }
+  }
+
+  .content {
+    position: relative;
+    background-color: $c-background-light;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 64px;
+    padding-bottom: 32px;
+    border: 1px solid $c-border;
+    width: 40%;
+    height: 70vh;
+    overflow: auto;
+
+    .btn-close {
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &::after,
+      &::before {
+        position: absolute;
+        left: 15px;
+        content: " ";
+        height: 33px;
+        width: 2px;
+        background-color: $c-text-main;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    .widget-type-select {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 64px;
+      .widget-type {
+        padding: 16px;
+        text-align: center;
+        border: 1px solid $c-border;
+        cursor: pointer;
+        &.active {
+          background-color: $c-highlight;
+          color: #fff;
+        }
+      }
+    }
+
+    .form-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 64px;
+
+      .form-left {
+        grid-column: 1;
+
+        .metric-form {
+          margin-bottom: 48px;
+        }
+      }
+
+      .form-rigth {
+        grid-column: 2;
+      }
+
+      .widget-settings-form,
+      .widget-styling-form {
+        display: grid;
+        grid-template-columns: 110px 80px 1fr;
+        gap: 4px;
+        margin-bottom: 48px;
+
+        label {
+          grid-column: 1;
+        }
+        input {
+          grid-column: 2;
+        }
+        .title {
+          grid-column: span 3;
+        }
+      }
+    }
+
+    .buttons-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 64px;
+
+      .btn-delete,
+      .btn-cancel,
+      .btn-save {
+        background: none;
+        border: 1px solid black;
+        padding: 8px;
+        width: 120px;
+        cursor: pointer;
+      }
+
+      .btn-delete {
+        background-color: $c-danger;
+        color: white;
+        border: 1px solid darken($c-danger, $amount: 20);
+        justify-self: left;
+        &:hover {
+          background-color: lighten($c-danger, $amount: 5);
+        }
+      }
+
+      .btn-cancel {
+        background-color: $c-input;
+        color: $c-text-main;
+        border: 1px solid $c-border;
+        justify-self: center;
+      }
+
+      .btn-save {
+        background-color: $c-highlight;
+        color: white;
+        border: 1px solid darken($c-highlight, $amount: 20);
+        justify-self: right;
+        &:hover {
+          background-color: lighten($c-highlight, $amount: 5);
+        }
+      }
+    }
+  }
+}
