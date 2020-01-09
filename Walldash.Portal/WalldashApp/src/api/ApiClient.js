@@ -3,6 +3,7 @@ import axios from "axios";
 var bearerToken = "";
 
 const accountToken = "FFDB19C4-E99E-4503-8F0A-A5EAD55DA56A";
+const url = "http://api.mfabricius.dk/api";
 
 const getBearerToken = () => {
   return new Promise(resolve => {
@@ -26,7 +27,7 @@ const getBearerToken = () => {
 const getWidgets = id => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Widget/GetByDashboardId/${id}`,
+      url: `${url}/Widget/GetByDashboardId/${id}`,
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -44,7 +45,7 @@ const getWidgets = id => {
 const updateWidget = (id, widget) => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Widget/${id}`,
+      url: `${url}/Widget/${id}`,
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -63,7 +64,7 @@ const updateWidget = (id, widget) => {
 const createWidget = widget => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Widget`,
+      url: `${url}/Widget`,
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -82,7 +83,7 @@ const createWidget = widget => {
 const deleteWidget = id => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Widget/${id}`,
+      url: `${url}/Widget/${id}`,
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -102,7 +103,7 @@ const deleteWidget = id => {
 const getMetricAliases = () => {
   return new Promise(resolve => {
     const settings = {
-      url: "http://walldash.dk/api/Metric/GetAliases",
+      url: `${url}/Metric/GetAliases`,
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -122,7 +123,7 @@ const getMetricAliases = () => {
 const getDashboards = () => {
   return new Promise(resolve => {
     const settings = {
-      url: "http://walldash.dk/api/Dashboard",
+      url: `${url}/Dashboard`,
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -140,7 +141,7 @@ const getDashboards = () => {
 const createDashboard = alias => {
   return new Promise(resolve => {
     const settings = {
-      url: "http://walldash.dk/api/Dashboard",
+      url: `${url}/Dashboard`,
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -161,7 +162,7 @@ const createDashboard = alias => {
 const deleteDashboard = id => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Dashboard/${id}`,
+      url: `${url}/Dashboard/${id}`,
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -179,7 +180,7 @@ const deleteDashboard = id => {
 const updateDashboard = (id, alias) => {
   return new Promise(resolve => {
     const settings = {
-      url: `http://walldash.dk/api/Dashboard/${id}`,
+      url: `${url}/Dashboard/${id}`,
       method: "PUT",
       headers: {
         "content-type": "application/json",

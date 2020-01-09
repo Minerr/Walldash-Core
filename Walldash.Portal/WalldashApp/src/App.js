@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/pages/Dashboard";
 import Portal from "./components/pages/Portal";
-import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import fire from "./config/fire";
 import Navbar from "./components/Navbar";
@@ -35,7 +34,7 @@ function App() {
         <Switch>
           <Route path='/dashboard/:id' component={Dashboard} />
           <Route path='/portal' component={Portal} />
-          <Route path='/' component={Home} />
+          <Route path='/' component={Portal} />
         </Switch>
       </BrowserRouter>
     );

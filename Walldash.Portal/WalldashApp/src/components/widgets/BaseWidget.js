@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import SingleMetric from "./SingleMetric";
 import { WidgetContext } from "../../contexts/WidgetContext";
-import ComposedGraph from "./ComposedGraph";
 import RankChart from "./RankChart";
 import WidgetForm from "./forms/WidgetForm";
 import ButtonEdit from "../patials/ButtonEdit";
@@ -12,9 +11,6 @@ const BaseWidget = ({ widget }) => {
   const { dispatch } = useContext(WidgetContext);
 
   useEffect(() => {
-    if (widget.initialCreate) {
-      return;
-    }
     refreshWidget();
   }, []);
 
@@ -22,6 +18,7 @@ const BaseWidget = ({ widget }) => {
     if (!widget.metricAlias) {
       return;
     }
+
     dispatch({
       type: "REFRESH_WIDGET",
       id: widget.id,
@@ -55,7 +52,11 @@ const BaseWidget = ({ widget }) => {
       }}>
       <div className='aspec-ratio'>{selectWidget()}</div>
       <ButtonEdit onClick={() => setEdit(true)} />
-      {edit ? <WidgetForm onClose={() => setEdit(false)} widget={widget} /> : ""}
+      {edit ? (
+        <WidgetForm onClose={() => setEdit(false)} widget={widget} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

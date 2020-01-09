@@ -25,6 +25,7 @@
     border: 1px solid $c-border;
     font-size: 1.1rem;
     width: 100%;
+    border-radius: 4px;
   }
 
   input {
@@ -70,8 +71,9 @@
     padding-bottom: 32px;
     border: 1px solid $c-border;
     width: 40%;
-    height: 70vh;
+    height: 66vh;
     overflow: auto;
+    border-radius: 8px;
 
     .btn-close {
       position: absolute;
@@ -111,11 +113,12 @@
       grid-template-rows: 1;
       gap: 16px;
       justify-content: center;
-      margin-bottom: 64px;
+      margin-bottom: 32px;
       .widget-type {
         padding: 16px;
         text-align: center;
         border: 1px solid $c-border;
+        border-radius: 8px;
         cursor: pointer;
         &.active {
           background-color: $c-highlight;
@@ -166,15 +169,16 @@
       grid-template-rows: 1;
       gap: 16px;
       justify-content: center;
-      margin-top: 64px;
+      margin-top: 32px;
 
       .btn-delete,
       .btn-cancel,
       .btn-save {
         background: none;
         border: 1px solid black;
-        padding: 8px;
+        padding: 12px;
         width: 120px;
+        border-radius: 8px;
         cursor: pointer;
       }
 

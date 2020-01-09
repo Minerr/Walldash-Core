@@ -40,17 +40,21 @@ const WidgetForm = ({ onClose, initCreate = false, widget }) => {
     }
   };
 
+  const handleCreateWidget = () => {
+    dispatch({ type: "ADD_WIDGET", widget: widgetChanges });
+  };
+
   const handleRemoveWidget = () => {
     dispatch({ type: "REMOVE_WIDGET", id: widgetChanges.id });
     onClose();
   };
 
   const handleUpdateWidget = () => {
-    dispatch({ type: "UPDATE_WIDGET", id: widgetChanges.id, widget: widgetChanges });
-  };
-
-  const handleCreateWidget = () => {
-    dispatch({ type: "ADD_WIDGET", widget: widgetChanges });
+    dispatch({
+      type: "UPDATE_WIDGET",
+      id: widgetChanges.id,
+      widget: widgetChanges
+    });
   };
 
   const handleChange = changes => {
@@ -60,7 +64,9 @@ const WidgetForm = ({ onClose, initCreate = false, widget }) => {
   const selectForm = () => {
     switch (widgetChanges.type) {
       case "SingleData":
-        return <SingleDataForm onChange={handleChange} widget={widgetChanges} />;
+        return (
+          <SingleDataForm onChange={handleChange} widget={widgetChanges} />
+        );
 
       case "Graph":
         return <GraphForm onChange={handleChange} widget={widgetChanges} />;
@@ -83,7 +89,10 @@ const WidgetForm = ({ onClose, initCreate = false, widget }) => {
     <div className='widget-form'>
       <div className='content'>
         <div onClick={onClose} className='btn-close' />
-        <WidgetTypeSelect onSelectWidgetType={type => handleChange({ type })} selectedType={widgetChanges.type} />
+        <WidgetTypeSelect
+          onSelectWidgetType={type => handleChange({ type })}
+          selectedType={widgetChanges.type}
+        />
         <div className='form-container'>
           <div className='form-left'>
             <div className='metric-form'>
@@ -98,13 +107,21 @@ const WidgetForm = ({ onClose, initCreate = false, widget }) => {
               <CustomInput
                 label='Width'
                 value={widgetChanges.width}
-                onChange={e => handleChange({ width: parseInt(e.target.value ? e.target.value : 1) })}
+                onChange={e =>
+                  handleChange({
+                    width: parseInt(e.target.value ? e.target.value : 1)
+                  })
+                }
                 required={true}
               />
               <CustomInput
                 label='Height'
                 value={widgetChanges.height}
-                onChange={e => handleChange({ height: parseInt(e.target.value ? e.target.value : 1) })}
+                onChange={e =>
+                  handleChange({
+                    height: parseInt(e.target.value ? e.target.value : 1)
+                  })
+                }
                 required={true}
               />
             </div>
@@ -116,7 +133,10 @@ const WidgetForm = ({ onClose, initCreate = false, widget }) => {
                 onChange={color => handleChange({ backgroundColor: color })}
               />
               <label>Text</label>
-              <ColorPicker color={widgetChanges.textColor} onChange={color => handleChange({ textColor: color })} />
+              <ColorPicker
+                color={widgetChanges.textColor}
+                onChange={color => handleChange({ textColor: color })}
+              />
             </div>
           </div>
         </div>

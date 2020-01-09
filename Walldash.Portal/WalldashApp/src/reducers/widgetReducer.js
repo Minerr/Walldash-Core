@@ -22,6 +22,13 @@ export const widgetReducer = async (state = initialState, action) => {
         });
         break;
 
+      case "REMOVE_WIDGET": {
+        ApiClient.deleteWidget(action.id).then(() => {
+          resolve(state.filter(w => w.id !== action.id));
+        });
+        break;
+      }
+
       case "REFRESH_WIDGET": {
         const { id, metricAlias } = action;
         const response = fakeApi.getAllByAlias(metricAlias);
@@ -47,13 +54,6 @@ export const widgetReducer = async (state = initialState, action) => {
           widgets[objIndex].metricData = data;
 
           resolve(widgets);
-        });
-        break;
-      }
-
-      case "REMOVE_WIDGET": {
-        ApiClient.deleteWidget(action.id).then(response => {
-          resolve(state.filter(w => w.id !== action.id));
         });
         break;
       }

@@ -1,0 +1,79 @@
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-radius: 16px;
+  width: 300px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  padding: 64px;
+  padding-top: 32px;
+  color: $c-text-main;
+  border: 1px solid $c-border;
+
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .content {
+    label {
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      display: block;
+      width: 100%;
+      border: none;
+      background-color: $c-input;
+      border-radius: 8px;
+      padding: 8px;
+      margin-bottom: 16px;
+      color: $c-text-main;
+      box-sizing: border-box;
+      border: 1px solid $c-border;
+    }
+
+    input[type="password"] {
+      margin-bottom: 32px;
+    }
+
+    button {
+      border: none;
+      background-color: $c-input;
+      border-radius: 8px;
+      padding: 8px;
+      color: $c-text-main;
+      border: 1px solid $c-border;
+      width: 100px;
+      cursor: pointer;
+    }
+
+    .btn-sign-up {
+      float: left;
+    }
+
+    .btn-log-in {
+      float: right;
+    }
+  }
+
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: transparentize($color: $c-text-main, $amount: 0.5);
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: transparentize($color: $c-text-main, $amount: 0.5);
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: transparentize($color: $c-text-main, $amount: 0.5);
+  }
+}

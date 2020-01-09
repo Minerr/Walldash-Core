@@ -40,7 +40,8 @@ namespace Walldash.PublicAPI
 				builder =>
 				{
 					builder.WithOrigins("http://walldash.dk",
-										"http://api.mfabricius.dk")
+										"http://api.mfabricius.dk",
+										"http://localhost:3000")
 								.AllowAnyHeader()
 								.AllowAnyMethod();
 				});

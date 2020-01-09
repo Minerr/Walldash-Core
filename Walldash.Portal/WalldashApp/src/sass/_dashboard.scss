@@ -1,12 +1,11 @@
 .dashboard {
   .widget-list {
-    margin: 12px;
+    margin: 24px;
     display: grid;
     // grid-template-columns: repeat(3, minmax(300px, 1fr));
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 12px;
-    height: calc(100vw-12px);
+    grid-gap: 24px;
     // @media screen and (min-width: 1200px) {
     //   grid-template-columns: repeat(, minmax(300px, 1fr));
     // }

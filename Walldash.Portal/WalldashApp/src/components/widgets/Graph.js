@@ -1,5 +1,15 @@
 import React from "react";
-import { ResponsiveContainer, ComposedChart, Line, Area, Bar, XAxis, YAxis, Legend, CartesianGrid } from "recharts";
+import {
+  ResponsiveContainer,
+  ComposedChart,
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  Legend,
+  CartesianGrid
+} from "recharts";
 import moment from "moment";
 
 const graph = {
@@ -23,7 +33,13 @@ const Graph = ({ widget }) => {
   const renderComponent = () => {
     switch (widget.graphType) {
       case "line":
-        return <Line type='monotone' dataKey={widget.graphValueY} stroke={widget.graphColor} />;
+        return (
+          <Line
+            type='monotone'
+            dataKey={widget.graphValueY}
+            stroke={widget.graphColor}
+          />
+        );
       case "area":
         return (
           <Area
@@ -35,7 +51,13 @@ const Graph = ({ widget }) => {
           />
         );
       case "bar":
-        return <Bar dataKey={widget.graphValueY} barSize={20} fill={widget.graphColor} />;
+        return (
+          <Bar
+            dataKey={widget.graphValueY}
+            barSize={20}
+            fill={widget.graphColor}
+          />
+        );
 
       default:
         break;
@@ -64,10 +86,10 @@ const Graph = ({ widget }) => {
           <XAxis
             dataKey={widget.graphValueX}
             stroke={widget.color}
-            tick={{ fill: graph.styleSettings.textColor }}
+            tick={{ fill: widget.textColor }}
             tickFormatter={unixTime => moment(unixTime).format("HH:mm")}
           />
-          <YAxis stroke={graph.styleSettings.textColor} tick={{ fill: graph.styleSettings.textColor }} />
+          <YAxis stroke={widget.textColor} tick={{ fill: widget.textColor }} />
           <Legend />
           {renderComponent()}
         </ComposedChart>

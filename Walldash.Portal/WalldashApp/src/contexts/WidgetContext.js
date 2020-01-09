@@ -11,7 +11,11 @@ const WidgetContextProvider = props => {
     dispatch({ type: "INIT_FETCH", dashboardId: props.dashboardId });
   }, []);
 
-  return <WidgetContext.Provider value={{ widgets, dispatch }}>{props.children}</WidgetContext.Provider>;
+  return (
+    <WidgetContext.Provider value={{ widgets, dispatch }}>
+      {props.children}
+    </WidgetContext.Provider>
+  );
 };
 
 export default WidgetContextProvider;

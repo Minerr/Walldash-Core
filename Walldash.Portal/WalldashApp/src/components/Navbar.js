@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FullscreenToggle from "./patials/FullscreenToggle";
+import fire from "../config/fire";
 
 const Navbar = () => {
   return (
@@ -13,7 +14,9 @@ const Navbar = () => {
           <Link to='/portal'>Portal</Link>
         </li>
         <li style={{ float: "right" }}>
-          <div className='logout'>Logout</div>
+          <div className='logout' onClick={() => fire.auth().signOut()}>
+            Logout
+          </div>
         </li>
         <li style={{ float: "right" }}>
           <FullscreenToggle />
